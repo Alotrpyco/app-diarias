@@ -1,7 +1,7 @@
 def formatar_moeda(valor):
     return f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
-#==========================CONDIÇÃO PARA O CALCULO DE DIÁRIAS=============================
+#=====CONDIÇÃO PARA O CALCULO DE DIÁRIAS======
 from datetime import datetime
 
 def calcular_dias_diaria(data_inicio, data_fim):
