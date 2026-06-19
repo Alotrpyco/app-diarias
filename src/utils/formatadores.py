@@ -1,9 +1,7 @@
 def formatar_moeda(valor):
     return f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
-
 #==========================CONDIÇÃO PARA O CALCULO DE DIÁRIAS=============================
-
 def calcular_dias_diaria(data_inicio, data_fim):
     diferenca = data_fim - data_inicio
     horas = diferenca.total_seconds() / 3600
