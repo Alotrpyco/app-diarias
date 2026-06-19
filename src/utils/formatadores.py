@@ -22,3 +22,4 @@ def calcular_dias_diaria(data_inicio, data_fim):
 
     return dias, descricao, horas
 
+
