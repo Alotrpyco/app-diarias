@@ -3,16 +3,16 @@ from datetime import datetime
 import webbrowser
 import logging 
 
+from constantes.config import (
+    DIARIAS,
+    CARGOS_GRUPOS
+)
+
 from constantes.links import (
     abrir_site_setur,
     abrir_banco_central,
     abrir_cotacao_bcb,
     abrir_decreto
-)
-
-from constantes.config import (
-    DIARIAS,
-    CARGOS_GRUPOS
 )
 
 from utils.formatadores import(
