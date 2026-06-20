@@ -18,7 +18,7 @@ def calcular_dias_diaria(data_inicio, data_fim):
         dias += 1
         descricao = f"{dias} diárias"
     else:
-        descricao = f"{dias} diárias + ½"
+        descricao = f"{dias} diárias + ½ meia diária"
 
     return dias, descricao, horas
 

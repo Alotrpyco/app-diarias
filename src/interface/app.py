@@ -3,6 +3,12 @@ from datetime import datetime
 import webbrowser
 import logging 
 
+from constantes.links import (
+    abrir_site_setur,
+    abrir_banco_central,
+    abrir_cotacao_bcb,
+    abrir_decreto
+)
 
 from constantes.config import (
     DIARIAS,
@@ -10,10 +16,9 @@ from constantes.config import (
 )
 
 from utils.formatadores import(
-    calcular_dias_diaria, 
-    formatar_moeda
+    formatar_moeda,
+    calcular_dias_diaria
 )
-
 
 #============================================================
 """""
