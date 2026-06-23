@@ -2,6 +2,8 @@ from PIL import Image
 from datetime import datetime
 import webbrowser
 import logging 
+import customtkinter as ctk
+
 
 from constantes.config import (
     DIARIAS,
@@ -20,22 +22,16 @@ from utils.formatadores import(
     calcular_dias_diaria
 )
 
-#============================================================
-"""""
-====SISTEMA DE AUDITORIA (LOGGING)=====
-Responsável por registrar eventos importantes do sistema,
-como cálculos realizados, geração e erros.
-Os registros são armazenados em um arquivo .log para rastreabilidade.
-"""""
+from utils.logger import log_auditoria
 
-logging.basicConfig(
-    filename="auditoria_diarias.log",
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-    datefmt="%d/%m/%Y %H:%M:%S"
-)
+ctk.set_appearance_mode("light")
+ctk.set_default_color_theme("blue")
 
-def log_auditoria(mensagem):
-    logging.info(mensagem)
-#===========================================================
+def iniciar_sistema():
+
+    app = ctk.CTk()
+    app.title("SETUR/AL - Sistema de Cálculo de Diárias")
+    app.geometry("900x800")
+
+
 
