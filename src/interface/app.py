@@ -33,5 +33,18 @@ def iniciar_sistema():
     app.title("SETUR/AL - Sistema de Cálculo de Diárias")
     app.geometry("900x800")
 
+#=====================LOGO(SETUR)=========================
+logo = ctk.CTkImage(
+    light_image=Image.open("logo_setur.png"),
+    size=(140,140)
+)
+
+ctk.CTkLabel(app, imagem=logo, text="").pack(pady=10)
+
+ctk.CTkLabel(
+    app, 
+    text="Secretaria de Estado do Turismo de Alagoas",
+    font=("Arial", 14)
+).pack(pady=(0,20))
 
 
