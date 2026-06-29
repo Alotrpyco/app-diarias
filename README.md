@@ -1,1 +1,1 @@
-# app-diarias
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=50&duration=700&pause=100&color=051015&background=3A3A3A00&center=true&vCenter=true&multiline=true&repeat=false&random=true&width=435&height=100&lines=Projeto+em+constru%C3%A7%C3%A3o!!!" alt="Typing SVG" /></a>
