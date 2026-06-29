@@ -36,7 +36,7 @@ def iniciar_sistema():
     app.title("SETUR/AL - Sistema de Cálculo de Diárias")
     app.geometry("900x800")
 
-    #=====================LOGO DA SETUR======================
+    #=====================LOGO DA SETUR=====================
     logo = ctk.CTkImage(
         light_image=Image.open("image/logo_setur.png"),
         size=(140,140)
@@ -50,7 +50,7 @@ def iniciar_sistema():
         font=("Arial", 14)
     ).pack(pady=(0,20))    
 
-    #========================QUADRO==========================
+    #========================QUADRO=========================
     frame = ctk.CTkFrame(app)
     frame.pack(fill="x", padx=20, pady=20)
 
@@ -67,7 +67,7 @@ def iniciar_sistema():
     grupo_menu.grid(row=0, column=1)
 
     def mostrar_cargos():
-        grupos =grupo_var.get()
+        grupos = grupo_var.get()
         cargos = "\n".join(CARGOS_GRUPOS[grupos])
             
         messagebox.showinfo("Cargos do Grupo", cargos)
@@ -91,7 +91,7 @@ def iniciar_sistema():
     )
     tipo_menu.grid(row=1, column=1)
 
-    #=================LOCALIDADE===========================
+    #=================LOCALIDADES============================
     ctk.CTkLabel(frame, text="Localidade").grid(row=2, column=0)
 
     localidade_menu = ctk.CTkOptionMenu(
@@ -101,7 +101,23 @@ def iniciar_sistema():
     )
     localidade_menu.grid(row=2, column=1)
 
-    #===================DATAS & HORAS INICIAIS ===============================
+    def atualizar_localidades(*args):
+        grupo = grupo_var.get()
+        tipo = tipo_var.get()
+
+        locais = list(DIARIAS[grupo][tipo].keys())
+
+        localidade_menu.configure(values=locais)
+
+        if locais:
+            localidade_var.set(locais[0])
+        
+    grupo_var.trace_add("write", atualizar_localidades)
+    tipo_var.trace_add("write", atualizar_localidades)
+
+    atualizar_localidades()
+    
+    #===================DATAS & HORAS INICIAIS ==============
     ctk.CTkLabel(frame, text="Data Inicial").grid(row=3, column=0)
     data_inicio = ctk.CTkEntry(frame)
     data_inicio.grid(row=3, column=1)
@@ -110,4 +126,13 @@ def iniciar_sistema():
     hora_inicio = ctk.CTkEntry(frame)
     hora_inicio.grid(row=3, column=3)
 
+    #=======================DATAS & HORAS FINAIS==============
+    ctk.CTkLabel(frame, text="Data Final").grid(row=4, column=0)
+    data_fim = ctk.CTkEntry(frame)
+    data_fim.grid(row=4, column=1)
+
+    ctk.CTkLabel(frame, text="Hora Final").grid(row=4, column=2)
+    hora_fim = ctk.CTkEntry(frame)
+    hora_fim.grid(row=4, column=3)
+    
     app.mainloop()
