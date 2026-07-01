@@ -134,5 +134,11 @@ def iniciar_sistema():
     ctk.CTkLabel(frame, text="Hora Final").grid(row=4, column=2)
     hora_fim = ctk.CTkEntry(frame)
     hora_fim.grid(row=4, column=3)
+
+    # ============CAIXA PARA DIGITAR O VALOR DA COTAÇÃO======= ad
+    ctk.CTkLabel(frame, text="Cotação da Moeda ").grid(row=5, column=0)
+
+    cotacao = ctk.CTkEntry(frame)
+    cotacao.grid(row=5, column=1)
     
     app.mainloop()
