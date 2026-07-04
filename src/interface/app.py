@@ -18,7 +18,11 @@ from src.constantes.links import (
 )
 
 from src.utils.diarias import(
-    calcular_dias_diaria
+    calcular_periodo,
+    calcular_quantidade_diarias,
+    aplica_reducao,
+    calcular_valor
+    
 )
 
 from src.utils.formatadores import(
@@ -135,10 +139,16 @@ def iniciar_sistema():
     hora_fim = ctk.CTkEntry(frame)
     hora_fim.grid(row=4, column=3)
 
-    # ============CAIXA PARA DIGITAR O VALOR DA COTAÇÃO======= ad
+    # ============CAIXA PARA DIGITAR O VALOR DA COTAÇÃO========
     ctk.CTkLabel(frame, text="Cotação da Moeda ").grid(row=5, column=0)
 
     cotacao = ctk.CTkEntry(frame)
     cotacao.grid(row=5, column=1)
+
+    #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
+    resultado = ctk.CTkTextbox(app, width=800, height=275)
+    resultado.pack(padx=20, pady=20)
+
+    texto_cache = {"conteudo": ""}
     
     app.mainloop()
