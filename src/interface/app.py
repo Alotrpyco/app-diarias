@@ -1,6 +1,7 @@
 from PIL import Image
 from datetime import datetime
 from tkinter import messagebox
+import tkinter as tk
 import webbrowser
 import logging 
 import customtkinter as ctk
@@ -31,6 +32,8 @@ from src.utils.formatadores import(
 
 from src.utils.logger import log_auditoria
 
+
+
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
@@ -43,7 +46,7 @@ def iniciar_sistema():
     #=====================LOGO DA SETUR=====================
     logo = ctk.CTkImage(
         light_image=Image.open("image/logo_setur.png"),
-        size=(140,140)
+        size=(275,175)
     )
 
     ctk.CTkLabel(app, image=logo, text="").pack(pady=10)
@@ -146,9 +149,25 @@ def iniciar_sistema():
     cotacao.grid(row=5, column=1)
 
     #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
-    resultado = ctk.CTkTextbox(app, width=800, height=275)
+    resultado = ctk.CTkTextbox(app, width=800, height=250)
     resultado.pack(padx=20, pady=20)
 
     texto_cache = {"conteudo": ""}
+
+    # =====================TEMA===========================
+    def alterar_tema(modo):
+        ctk.set_appearance_mode(modo)
+        ctk.CTkLabel(frame, text="Tema").grid(row=6, column=0, padx=10, pady=10)
+
+    tema_menu = ctk.CTkOptionMenu(
+        frame,
+        values=["Dark", "System"],
+        command=alterar_tema
+    )
+    tema_menu.grid(row=6, column=1, padx=10, pady=10)
+
+    tema_menu.set("System")
+
+    
     
     app.mainloop()
