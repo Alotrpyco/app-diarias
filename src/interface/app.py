@@ -1,6 +1,7 @@
 from PIL import Image
 from datetime import datetime
 from tkinter import messagebox
+import tkinter as tk
 import webbrowser
 import logging 
 import customtkinter as ctk
@@ -31,6 +32,8 @@ from src.utils.formatadores import(
 
 from src.utils.logger import log_auditoria
 
+
+
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
@@ -43,7 +46,7 @@ def iniciar_sistema():
     #=====================LOGO DA SETUR=====================
     logo = ctk.CTkImage(
         light_image=Image.open("image/logo_setur.png"),
-        size=(140,140)
+        size=(275,175)
     )
 
     ctk.CTkLabel(app, image=logo, text="").pack(pady=10)
@@ -146,7 +149,7 @@ def iniciar_sistema():
     cotacao.grid(row=5, column=1)
 
     #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
-    resultado = ctk.CTkTextbox(app, width=800, height=275)
+    resultado = ctk.CTkTextbox(app, width=800, height=250)
     resultado.pack(padx=20, pady=20)
 
     texto_cache = {"conteudo": ""}
@@ -167,7 +170,7 @@ def iniciar_sistema():
             tipo = tipo_var.get()
             local = localidade_var.get()
 
-        #=======CÁLCULO PARA O PERÍODO DA VIAGEM NACIONAL=============
+      #=======CÁLCULO PARA O PERÍODO DA VIAGEM NACIONAL=============
     
             periodo = calcular_periodo(inicio, fim)
 
@@ -193,7 +196,7 @@ def iniciar_sistema():
                 f"{descricao}\n\n"
             )
 
-            # ======== VIAGEM NACIONAL===================
+       # ======== VIAGEM NACIONAL===================
             
             if tipo == "Nacional":
 
@@ -208,9 +211,7 @@ def iniciar_sistema():
                     f"{', '.join(CARGOS_GRUPOS[grupo])}"
                 )
 
-            # ==========================
-            # VIAGEM INTERNACIONAL
-            # ==========================
+       # ======== VIAGEM INTERNACIONAL ===================
             else:
 
                 if not cotacao.get():
@@ -257,25 +258,6 @@ def iniciar_sistema():
                 "Erro",
                 str(erro)
             )
-    frame_btn = ctk.CTkFrame(app)
-    frame_btn.pack(fill="x", padx=20)
-
-    ctk.CTkButton(
-            frame_btn,
-            text="Calcular",
-            command=calcular
-        ).pack(side="left", padx=10, pady=10)
-
-    ctk.CTkButton(
-            frame_btn,
-            text="Portal SETUR",
-            command=abrir_site_setur
-        ).pack(side="left", padx=10)
-
-    ctk.CTkButton(
-            frame_btn,
-            text="Banco Central",
-            command=abrir_banco_central
-        ).pack(side="left", padx=10)
+   
     
     app.mainloop()
