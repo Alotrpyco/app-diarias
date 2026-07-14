@@ -150,5 +150,132 @@ def iniciar_sistema():
     resultado.pack(padx=20, pady=20)
 
     texto_cache = {"conteudo": ""}
+    def calcular():
+
+        try:
+            inicio = datetime.strptime(
+                f"{data_inicio.get()} {hora_inicio.get()}",
+                "%d/%m/%Y %H:%M"
+            )
+
+            fim = datetime.strptime(
+                f"{data_fim.get()} {hora_fim.get()}",
+                "%d/%m/%Y %H:%M"
+            )
+
+            grupo = grupo_var.get()
+            tipo = tipo_var.get()
+            local = localidade_var.get()
+
+        #=======CÁLCULO PARA O PERÍODO DA VIAGEM NACIONAL=============
+    
+            periodo = calcular_periodo(inicio, fim)
+
+            if periodo["pernoite"]:
+                pernoite = "Houve pernoite"
+            else:
+                pernoite = "Não houve pernoite"
+
+            quantidade, descricao = calcular_quantidade_diarias(periodo)
+
+            horas = periodo["horas"]
+
+            valor_unitario = DIARIAS[grupo][tipo][local]
+
+            total = calcular_valor(
+                quantidade,
+                valor_unitario,
+                grupo
+            )
+
+            texto = (
+                f"Duração: {horas:.1f} horas\n\n"
+                f"{descricao}\n\n"
+            )
+
+            # ======== VIAGEM NACIONAL===================
+            
+            if tipo == "Nacional":
+
+                texto += (
+                    f"Grupo: {grupo}\n\n"
+                    f"Localidade: {local}\n\n"
+                    f"Quantidade de Diárias: {quantidade}\n\n"
+                    f"{pernoite}\n\n"
+                    f"Valor Unitário: R$ {formatar_moeda(valor_unitario)}\n\n"
+                    f"Total: R$ {formatar_moeda(total)}\n\n"
+                    f"Cargos do grupo:\n"
+                    f"{', '.join(CARGOS_GRUPOS[grupo])}"
+                )
+
+            # ==========================
+            # VIAGEM INTERNACIONAL
+            # ==========================
+            else:
+
+                if not cotacao.get():
+                    raise ValueError(
+                        "Informe a cotação para viagens internacionais."
+                    )
+
+                cotacao_valor = float(
+                    cotacao.get().replace(",", ".")
+                )
+
+                total_reais = total * cotacao_valor
+
+                texto = (
+                    f"Grupo: {grupo}\n\n"
+                    f"Tipo: {tipo}\n\n"
+                    f"Localidade: {local}\n\n"
+                    f"Afastamento: {periodo['dias']} dias\n\n"
+                    f"Quantidade de Diárias: {quantidade}\n\n"
+                    f"Valor Unitário: US$ {formatar_moeda(valor_unitario)}\n\n"
+                    f"Cotação: R$ {formatar_moeda(cotacao_valor)}\n\n"
+                    f"Total em Dólar: US$ {formatar_moeda(total)}\n\n"
+                    f"Total em Reais: R$ {formatar_moeda(total_reais)}\n\n"
+                    f"Cargos do grupo:\n"
+                    f"{', '.join(CARGOS_GRUPOS[grupo])}"
+                )
+
+            resultado.delete("1.0", "end")
+            resultado.insert("1.0", texto)
+
+            texto_cache["conteudo"] = texto
+
+            log_auditoria(
+                grupo=grupo,
+                tipo=tipo,
+                localidade=local,
+                quantidade=quantidade,
+                valor_unitario=valor_unitario,
+                total=total if tipo == "Nacional" else total_reais
+            )
+
+        except Exception as erro:
+            messagebox.showerror(
+                "Erro",
+                str(erro)
+            )
+    frame_btn = ctk.CTkFrame(app)
+    frame_btn.pack(fill="x", padx=20)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Calcular",
+            command=calcular
+        ).pack(side="left", padx=10, pady=10)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Portal SETUR",
+            command=abrir_site_setur
+        ).pack(side="left", padx=10)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Banco Central",
+            command=abrir_banco_central
+        ).pack(side="left", padx=10)
     
     app.mainloop()
