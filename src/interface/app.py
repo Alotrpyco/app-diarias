@@ -148,11 +148,6 @@ def iniciar_sistema():
     cotacao = ctk.CTkEntry(frame)
     cotacao.grid(row=5, column=1)
 
-    #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
-    resultado = ctk.CTkTextbox(app, width=800, height=250)
-    resultado.pack(padx=20, pady=20)
-
-    texto_cache = {"conteudo": ""}
     def calcular():
 
         try:
@@ -291,6 +286,11 @@ def iniciar_sistema():
             text="Decreto",
             command=abrir_decreto
         ).pack(side="left", padx=10)
-   
     
+    #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
+    resultado = ctk.CTkTextbox(app, width=800, height=250)
+    resultado.pack(padx=20, pady=20)
+
+    texto_cache = {"conteudo": ""}
+        
     app.mainloop()
