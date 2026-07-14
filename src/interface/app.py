@@ -288,9 +288,25 @@ def iniciar_sistema():
         ).pack(side="left", padx=10)
     
     #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
-    resultado = ctk.CTkTextbox(app, width=800, height=250)
-    resultado.pack(padx=20, pady=20)
+
+
+    frame_resultado = ctk.CTkFrame(app)
+    frame_resultado.pack(
+        fill="both",
+        expand=True,
+        padx=20,
+        pady=20
+    )
+
+    resultado = ctk.CTkTextbox(frame_resultado)
+    resultado.pack(
+        fill="both",
+        expand=True,
+        padx=10,
+        pady=10
+    )
 
     texto_cache = {"conteudo": ""}
         
     app.mainloop()
+
