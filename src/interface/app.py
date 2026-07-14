@@ -258,6 +258,39 @@ def iniciar_sistema():
                 "Erro",
                 str(erro)
             )
+    # ===== BOTÕES DE CÁLCULO E LINKS ÚTEIS =========
+    frame_btn = ctk.CTkFrame(app)
+    frame_btn.pack(fill="x", padx=20)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Calcular",
+            command=calcular
+        ).pack(side="left", padx=10, pady=10)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Portal SETUR",
+            command=abrir_site_setur
+        ).pack(side="left", padx=10)
+
+    ctk.CTkButton(
+            frame_btn,
+            text="Banco Central",
+            command=abrir_banco_central
+        ).pack(side="left", padx=10)
+    
+    ctk.CTkButton(
+            frame_btn,
+            text="Cotação BCB",
+            command=abrir_cotacao_bcb
+        ).pack(side="left", padx=10)
+    
+    ctk.CTkButton(
+            frame_btn,
+            text="Decreto",
+            command=abrir_decreto
+        ).pack(side="left", padx=10)
    
     
     app.mainloop()
