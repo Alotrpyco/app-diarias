@@ -11,7 +11,7 @@ def calcular_periodo(data_inicio, data_fim):
     horas = (data_fim - data_inicio).total_seconds() / 3600
     pernoite = data_inicio.date() != data_fim.date()
 
-    dias = (data_fim.date() - data_inicio.date()).days + 1 if pernoite else 1
+    dias = (data_fim.date() - data_inicio.date()).days + 1
 
     return {
         "horas": horas,
@@ -23,17 +23,30 @@ def calcular_periodo(data_inicio, data_fim):
 def calcular_quantidade_diarias(periodo):
     """
     Calcula a quantidade de diárias.
+
+    Regras:
+
+    • Sem pernoite:
+        - ½ diária.
+
+    • Com pernoite:
+        - quantidade de dias corridos menos ½ diária
+          referente ao dia do retorno.
     """
 
     if not periodo["pernoite"]:
         return 0.5, "½ diária (sem pernoite)"
 
-    quantidade = periodo["dias"]
+    dias = periodo["dias"]
+
+    quantidade = dias - 0.5  # Subtrai ½ diária do dia do retorno
 
     if quantidade == 1:
         descricao = "1 diária"
+    elif quantidade.is_integer():
+        descricao = f"{int(quantidade)} diárias"
     else:
-        descricao = f"{quantidade} diárias"
+        descricao = f"{quantidade:.1f} diárias".replace(".", ",")
 
     return quantidade, descricao
 
