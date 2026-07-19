@@ -9,8 +9,10 @@ def calcular_periodo(data_inicio, data_fim):
         raise ValueError("A data/hora final deve ser posterior à inicial.")
 
     horas = (data_fim - data_inicio).total_seconds() / 3600
-    pernoite = data_inicio.date() != data_fim.date()
 
+    pernoite = data_inicio.date() != data_fim.date()
+    
+    #conta os dias de partida e chegada
     dias = (data_fim.date() - data_inicio.date()).days + 1
 
     return {
@@ -22,31 +24,25 @@ def calcular_periodo(data_inicio, data_fim):
 
 def calcular_quantidade_diarias(periodo):
     """
-    Calcula a quantidade de diárias.
+    Calcula a quantidade de diárias conforme o Decreto nº 90.173/2023.
 
     Regras:
-
-    • Sem pernoite:
-        - ½ diária.
-
-    • Com pernoite:
-        - quantidade de dias corridos menos ½ diária
-          referente ao dia do retorno.
+    - Sem pernoite: 1/2 diária.
+    - Com pernoite: 1 diária por dia de afastamento,
+      contando o dia da partida e o da chegada.
     """
 
     if not periodo["pernoite"]:
         return 0.5, "½ diária (sem pernoite)"
-
+    
     dias = periodo["dias"]
 
-    quantidade = dias - 0.5  # Subtrai ½ diária do dia do retorno
+    quantidade = dias - 1  # Subtrai o dia da partida
 
     if quantidade == 1:
         descricao = "1 diária"
-    elif quantidade.is_integer():
-        descricao = f"{int(quantidade)} diárias"
     else:
-        descricao = f"{quantidade:.1f} diárias".replace(".", ",")
+        descricao = f"{quantidade} diárias"
 
     return quantidade, descricao
 
@@ -57,11 +53,6 @@ def aplica_reducao(grupo):
     prevista no Decreto Estadual nº 90.173/2023.
 
     O Grupo I não está sujeito à redução.
-    Os demais grupos terão a redução aplicada quando cabível.
-
-    Retorna:
-        True  -> aplica a redução.
-        False -> não aplica a redução.
     """
 
     grupos_sem_reducao = [
@@ -77,7 +68,7 @@ def calcular_valor(quantidade, valor_unitario, grupo):
     """
 
     # Caso seja meia diária
-    if quantidade == 0.5 and aplica_reducao(grupo):
+    if quantidade == 0.5:
         return valor_unitario * 0.5
 
     return quantidade * valor_unitario
