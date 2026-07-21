@@ -4,7 +4,7 @@
 ![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-1F6AA5?style=for-the-badge)
 ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6?style=for-the-badge&logo=windows)
 ![PyInstaller](https://img.shields.io/badge/PyInstaller-Executable-blue?style=for-the-badge)
-![MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
 
 <p align="center">
   <img src="image/tela_inicial.png" alt="Tela inicial do APP-DIÁRIAS" width="800">
