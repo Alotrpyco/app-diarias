@@ -142,10 +142,8 @@ dist/
 ## :statue_of_liberty: Autor:
 
 **Sérgio Ricardo Vieira Torres Silva**      
-  [![Email](https://img.shields.io/badge/Email-0078D4?style=for-the-badge&logo=gmail&logoColor=red)](mailto:sergio.torres@feac.ufal.br)
-
+  [![Email](https://img.shields.io/badge/Email-0078D4?style=for-the-badge&logo=gmail&logoColor=red)](mailto:sergio.torres@feac.ufal.br) 
   [![Instagram - Sérgio Ricardo](https://img.shields.io/badge/Instagram-E1306C?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/sergioricardo.me/)
-
 <a href="https://www.op.gg/summoners/br/Alotr%C3%B3pico">
   <img src="https://img.shields.io/badge/League%20of%20Legends-Alotr%C3%B3pico-0B0F1A?style=for-the-badge&logo=riotgames&logoColor=8A8A8A" alt="League of Legends">
 </a>
