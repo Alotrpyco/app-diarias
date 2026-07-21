@@ -43,6 +43,9 @@ def iniciar_sistema():
     app.title("SETUR/AL - Sistema de Cálculo de Diárias")
     app.geometry("900x800")
 
+    icone = tk.PhotoImage(file="image/logo_setur.png")
+    app.iconphoto(True, icone)
+
     #=====================LOGO DA SETUR=====================
     logo = ctk.CTkImage(
         light_image=Image.open("image/logo_setur.png"),
@@ -57,7 +60,7 @@ def iniciar_sistema():
         font=("Arial", 14)
     ).pack(pady=(0,20))    
 
-    #========================QUADRO=========================
+    #======================== QUADRO =========================
     frame = ctk.CTkFrame(app)
     frame.pack(fill="x", padx=20, pady=20)
 
@@ -195,7 +198,7 @@ def iniciar_sistema():
             
             if tipo == "Nacional":
 
-                texto += (
+                texto = (
                     f"Grupo: {grupo}\n\n"
                     f"Localidade: {local}\n\n"
                     f"Quantidade de Diárias: {quantidade}\n\n"
@@ -287,9 +290,8 @@ def iniciar_sistema():
             command=abrir_decreto
         ).pack(side="left", padx=10)
     
+    
     #==QUADRO QUE SERÁ EXIBIDO AS INFORMÇÕES DAS DIÁRIAS======
-
-
     frame_resultado = ctk.CTkFrame(app)
     frame_resultado.pack(
         fill="both",

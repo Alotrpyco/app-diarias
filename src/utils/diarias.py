@@ -12,35 +12,41 @@ def calcular_periodo(data_inicio, data_fim):
 
     pernoite = data_inicio.date() != data_fim.date()
     
-    #conta os dias de partida e chegada
+    # conta os dias de partida e chegada
     dias = (data_fim.date() - data_inicio.date()).days + 1
 
     return {
         "horas": horas,
         "pernoite": pernoite,
-        "dias": dias
+        "dias": dias,
+        "retorno": data_fim
     }
 
 
 def calcular_quantidade_diarias(periodo):
-    """
-    Calcula a quantidade de diárias conforme o Decreto nº 90.173/2023.
-
-    Regras:
-    - Sem pernoite: 1/2 diária.
-    - Com pernoite: 1 diária por dia de afastamento,
-      contando o dia da partida e o da chegada.
-    """
-
+  
     if not periodo["pernoite"]:
         return 0.5, "½ diária (sem pernoite)"
     
     dias = periodo["dias"]
+    retorno = periodo["retorno"]
 
-    quantidade = dias - 1  # Subtrai o dia da partida
+    # diárias completas dos dias intermediários
+    quantidade = dias - 2
+
+    # diária do dia da partida
+    quantidade += 1
+    
+    # verifica o horário de retorno
+    if retorno.hour >= 12:
+        quantidade += 0.5
+    else:
+        quantidade += 1
 
     if quantidade == 1:
         descricao = "1 diária"
+    elif quantidade == int(quantidade):
+        descricao = f"{int(quantidade)} diárias"
     else:
         descricao = f"{quantidade} diárias"
 
