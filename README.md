@@ -36,29 +36,31 @@
 
 ```text
 app-diarias/
-│   .gitignore
-│   LICENSE
-│   main.py
-│   README.md
-│   requirements.txt
-│   
-├───image
-│       logo_setur.ico
-│       logo_setur.png
-│       tela_inicial.png
-│       
-└───src
-    ├───constantes
-    │       config.py
-    │       links.py
-    │       
-    ├───interface
-    │       app.py
-    │       
-    └───utils
-            diarias.py
-            formatadores.py
-            logger.py
+│
+├── image/                      # Recursos visuais
+│   ├── logo_setur.ico          # Ícone do aplicativo
+│   ├── logo_setur.png          # Logo da SETUR
+│   └── tela_inicial.png        # Captura da tela inicial
+│
+├── src/                        # Código-fonte
+│   │
+│   ├── constantes/             # Configurações e constantes
+│   │   ├── config.py           # Configurações e valores das diárias
+│   │   └── links.py            # Links oficiais
+│   │
+│   ├── interface/              # Interface gráfica
+│   │   └── app.py              # Janela principal do sistema
+│   │
+│   └── utils/                  # Funções auxiliares
+│       ├── diarias.py          # Cálculo das diárias
+│       ├── formatadores.py     # Formatação de valores
+│       └── logger.py           # Auditoria e geração de logs
+│
+├── .gitignore                  # Arquivos e pastas ignorados pelo Git
+├── LICENSE                     # Licença do projeto
+├── main.py                     # Arquivo principal
+├── README.md                   # Documentação
+└── requirements.txt            # Dependências
 ```
 
 ## :hammer_and_wrench: Requisitos de Instalação
