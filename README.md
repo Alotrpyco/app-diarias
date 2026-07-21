@@ -73,7 +73,7 @@ git clone https://github.com/Alotrpyco/app-diarias.git
 ### 2. Acesse a pasta do projeto
 
 ```bash
-cd APP-DIARIAS
+cd app-diarias
 ```
 
 ### 3. Crie um ambiente virtual
